@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title>Show Product</title>
+		
+	</head>
+<body>
+	
+<h2>Product List is</h2>
+
+<table border="2">
+	<tr>
+		<th>ID</th>
+		<th>Category</th>
+		<th>Name</th>
+		<th>Brand</th>
+		<th>Description</th>
+		<th>Price</th>
+	</tr>
+
+	{% for i in response %}
+		<tr>
+			<td>{{i.id}}</td>
+			<td>{{i.category}}</td>
+			<td>{{i.name}}</td>
+			<td>{{i.brand}}</td>
+			<td>{{i.description}}</td>
+			<td>{{i.price}}</td>
+			
+			<td><button type="submit"name=id id=id><a href="/UpdatePro">edit</a></button></td>
+			<td><button type="submit" onclick="DelPro(i)">delete</button></td>
+			
+	
+	{% endfor %}
+	
+	
+</tr>
+</table>
+
+<form action="/UpdatePro/" method="POST" >
+	{% csrf_token %}
+	
+	<input type="text" id=i name="id" placeholder="input Number">
+	<button type="submit" id=i  value="Submit">Submit</button>
+
+</form>
+
+
+<form action="/DelPro/" method="POST" >
+	{% csrf_token %}
+	
+	<input type="text" id=i name="id" placeholder="input id">
+	<button type="submit" id=i  value="Submit">Submit</button>
+	
+</form>
+
+<script>
+
+	function DelPro(i)
+	{
+		document.getElementById(i) 
+		console.log(i) 
+	}
+	
+</script>
+	
+
+
+</body>
+
+
+
+</html>

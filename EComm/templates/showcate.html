@@ -1,0 +1,43 @@
+<html>
+<head>
+	<title>Show Category</title>
+
+</head>
+<body>
+	<h1>Category Availables are</h1>
+	<table border="2">
+		<tr>
+			<th>Id</th>
+			<th>Category Name</th>
+		</tr>
+
+		{% for i in response %}
+		<tr>
+			<td>{{i.id}}</td>
+			<td>{{i.name}}</td>
+			<td><button type="submit">edit</button></td>
+			<td><button type="submit" onclick="DelCategory(i)">delete</button></td>
+			{% endfor %}
+		</tr>
+			
+		
+	</table>
+
+	<form action="/DelCategory/" method="POST" >
+		{% csrf_token %}
+		
+		<input type="text" id=i name="id" placeholder="input id">
+		<button type="submit" id=i  value="Submit">Submit</button>
+	
+	</form>
+<script>
+
+	function DelCategory(i)
+	{
+		document.getElementById(i) 
+		console.log(i) 
+	}
+		
+	</script>
+</body>
+</html>

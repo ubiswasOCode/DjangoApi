@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<title>Update Product</title>
+	
+	</head>
+<body>
+<h2>Update Product Detail</h2>
+
+<label for="">Product Id</label>
+	<script>
+		{% comment %} <p>product id is:{%request.getParameter("id")%}</p> {% endcomment %}
+ 	document.getElementById("id").innerHTML = window.location.search;
+	</script>
+
+
+		  {% comment %} <script>function testJS()
+		 {
+		 
+		 var b = document.getElementById('id').value
+		 
+		 document.getElementById('id').innerHTML = b;
+		 
+		 }</script> 
+
+
+<form action="proUpdate.html" method="get">
+<table>
+	<tr>
+		<td id="id"></td>
+	</tr>
+</table>
+</form>
+
+<br><br> {% endcomment %}
+
+<form action='/UpdatePro/' method="POST">
+
+	{% csrf_token %}
+	
+
+	<label for="">Category Name</label>
+	<input type="text"  id="category" name="category" placeholder="Input Category Id">
+	<br><br>
+	
+	<label for="">Name</label>
+	<input type="text" id="name "name="name" placeholder="Enter Name">
+	<br><br> 
+
+	<label for="">Brand</label>
+	<input type="text" id="brand"name="brand" placeholder="Enter Brand Name">
+	<br><br>
+	
+	<label for="">Description</label>
+	<input type="text" id="description" name="description" placeholder="Enter Description">
+	<br><br>
+
+	<label for="">Price</label>
+	<input type="number" id="price"name="price" placeholder="Enter Price">
+	<br><br>
+
+	<button type="submit">Update </button>
+
+</form>
+
+</body>
+</html>
