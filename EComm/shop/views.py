@@ -52,7 +52,7 @@ def deleteuser(request):
         print("id")
         response=requests.delete(f'http://127.0.0.1:8000/api/deleteuser/{id}/')
     
-    return redirect('showuser')
+    return redirect('getuser')
 
 
 
@@ -97,19 +97,24 @@ def CreatePro(request):
 
 
 def proShow(request):
+    
     response=requests.get('http://127.0.0.1:8000/api/getproduct').json
 
     return render(request,'proshow.html',{'response':response })
 
 
-def UpdatePro(request):
+def UpdatePro(request, id):
     if request.method== "PUT":
         print(request,"data-------")
+        
         # print(request.PUT,"Data________")
         response=requests.put(f'http://127.0.0.1:8000/api/updateproduct/{id}/', data=request.PUT)
         return render(request,'proUpdate.html')
 
-    return render(request,'proUpdate.html')
+    if request.method== "POST":
+        print(request.POST)
+
+    return render(request,'proUpdate.html', {"id":id})
 
 
 def DelPro(request):
@@ -141,15 +146,22 @@ def showCate(request):
     return render(request,'showcate.html',{'response':response })
     
 
-def updateCate(request,pk):
-    # response=requests.PUT
-    pass
+def updateCate(request,id):
+    if request.method== "POST":
+        print(request.POST,"data-------")
+
+        response=requests.put(f'http://127.0.0.1:8000/api/updatecategory/{id}/', data=request.POST)
+        return render(request,'updateCate.html')
+
+    if request.method== "POST":
+        print(request.POST)
+
+    return render(request,'updateCate.html', {"id":id})
 
 
 def DelCategory(request):
     if request.method == "POST":
         id = request.POST["id"]
-        print("id")
         response=requests.delete(f'http://127.0.0.1:8000/api/deleteCategory/{id}/')
     
     return redirect('showCate')

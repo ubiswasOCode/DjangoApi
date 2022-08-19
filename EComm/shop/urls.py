@@ -19,13 +19,13 @@ urlpatterns = [
 
     path('proShow/',views.proShow,name='proShow'),
     path('CreatePro/',views.CreatePro,name='CreatePro'),
-    path('UpdatePro/',views.UpdatePro,name='UpdatePro'),
+    path('UpdatePro/<str:id>/',views.UpdatePro,name='UpdatePro'),
     path('DelPro/',views.DelPro,name='DelPro'),
 
-    path('CreateCate/',views.CreateCate ,name='CreateCate '),
-    path('showCate/',views.showCate ,name='showCate '),
-    path('DelCategory/',views.DelCategory ,name='DelCategory '),
-  
+    path('CreateCate/',views.CreateCate ,name='CreateCate'),
+    path('showCate/',views.showCate ,name='showCate'),
+    path('DelCategory/',views.DelCategory ,name='DelCategory'),
+    path('updateCate/<str:id>/',views.updateCate ,name='updateCate'),
 
     path('signup',views.signup,name='signup'),
     path('signout',views.signout,name='signout'),

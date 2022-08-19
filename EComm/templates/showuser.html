@@ -34,28 +34,30 @@
 			<td>{{i.age}}</td>
 			<td>{{i.gender}}</td>
 			<td><button type="submit"onclick="">edit</button></td>
-			<td><button type="submit" onclick="deleteuser(i)">delete</button></td>
+			<td><button type="submit" onclick="deleteuser({{i.id}})">delete</button></td>
 		</tr>
 		{% endfor %}
 		
 	</table>
 
-<form action="/deleteuser/" method="POST" >
+<form action="/deleteuser/" id="del_user" method="POST" >
 	{% csrf_token %}
 	
-	<input type="text" id=i name="id" placeholder="input id">
-	<button type="submit" id=i  value="Submit">Submit</button>
+	<input type="hidden" id="deluer" name="id" placeholder="input id">
+
 
 </form>
 
 <script>
 
-	function DelPro(i)
+	function deleteuser(id)
 	{
-		document.getElementById(i) 
-		console.log(i) 
+		let valu=document.getElementById("deluer");
+		valu.value=id
+		let form =  document.getElementById('del_user')
+		form.submit()
 	}
-	
+
 </script>
 
 </body>

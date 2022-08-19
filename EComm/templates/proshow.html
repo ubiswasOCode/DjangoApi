@@ -26,47 +26,58 @@
 			<td>{{i.description}}</td>
 			<td>{{i.price}}</td>
 			
-			<td><button type="submit"name=id id=id><a href="/UpdatePro">edit</a></button></td>
-			<td><button type="submit" onclick="DelPro(i)">delete</button></td>
+			<td><button type="button" name="id" id="id"><a onclick="returnUrl({{i.id}})">edit</a></button></td>
+
+			<td><button type="button" onclick="DelPro({{i.id}})">delete</button></td>
 			
-	
 	{% endfor %}
-	
+	{% comment %} <input type="text" id="proid" name="id" placeholder="input ID No">
+	<p id="pro"> Done</p> {% endcomment %}
 	
 </tr>
-</table>
+</table>	
 
-<form action="/UpdatePro/" method="POST" >
+{% comment %} <form action="/UpdatePro/" method="GET" >
 	{% csrf_token %}
 	
-	<input type="text" id=i name="id" placeholder="input Number">
-	<button type="submit" id=i  value="Submit">Submit</button>
+	<input type="text" id="proid" name="id" placeholder="input Number">
+	<button type="submit" value="Submit">Submit</button>
+
+</form> {% endcomment %}
+
+<form action="/DelPro/" id="pro_del" method="POST" >
+	{% csrf_token %}
+	
+	<input type="hidden" id="proid" name="id" placeholder="input id">
+	{% comment %} <button type="submit" id=i  value="Submit">Submit</button> {% endcomment %}
 
 </form>
 
 
-<form action="/DelPro/" method="POST" >
+
+{% comment %} <form action="/DelPro/" method="POST" >
 	{% csrf_token %}
 	
-	<input type="text" id=i name="id" placeholder="input id">
-	<button type="submit" id=i  value="Submit">Submit</button>
+	<input type="text" id="product" name="id" placeholder="input id">
+	<button type="submit"  value="Submit">Submit</button>
 	
-</form>
+</form> {% endcomment %}
 
 <script>
 
-	function DelPro(i)
-	{
-		document.getElementById(i) 
-		console.log(i) 
+	function DelPro(id) {
+		let valu=document.getElementById("proid");
+		valu.value=id
+		let form =  document.getElementById('pro_del')
+		form.submit()
+
+	}
+
+	function returnUrl(i)
+	{	
+		window.location = "http://127.0.0.1:8000/UpdatePro/"+i+"/"
 	}
 	
 </script>
-	
-
-
 </body>
-
-
-
 </html>

@@ -1,3 +1,4 @@
+
 <html>
 	<head>
 		<title>Update Product</title>
@@ -6,11 +7,8 @@
 <body>
 <h2>Update Product Detail</h2>
 
-<label for="">Product Id</label>
-	<script>
-		{% comment %} <p>product id is:{%request.getParameter("id")%}</p> {% endcomment %}
- 	document.getElementById("id").innerHTML = window.location.search;
-	</script>
+
+	
 
 
 		  {% comment %} <script>function testJS()
@@ -33,10 +31,14 @@
 
 <br><br> {% endcomment %}
 
-<form action='/UpdatePro/' method="POST">
+<form action='' id="update_prod" method="POST">
 
 	{% csrf_token %}
+
+	<label for="">Product Id</label>{{id}}
+	{% comment %} <input type="text" name="id"> {% endcomment %}
 	
+	<br><br>
 
 	<label for="">Category Name</label>
 	<input type="text"  id="category" name="category" placeholder="Input Category Id">
@@ -58,9 +60,19 @@
 	<input type="number" id="price"name="price" placeholder="Enter Price">
 	<br><br>
 
-	<button type="submit">Update </button>
+	<button type="button" onclick="submitForm({{id}})">Update </button>
 
 </form>
 
 </body>
+
+<script>
+	function submitForm(id){
+		let form =  document.getElementById('update_prod')
+		form.action = "/UpdatePro/"+id+"/"
+		form.submit()
+	}
+</script>
+
+
 </html>
